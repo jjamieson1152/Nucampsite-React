@@ -8,7 +8,7 @@ const DisplayList = () => {
   const items = [
     selectFeaturedCampsite(),
     selectFeaturedPromotion(),
-    selectFeaturedPartner,
+    selectFeaturedPartner(),
   ];
 
   return (
