@@ -9,14 +9,13 @@ import {
   Label,
   Button,
 } from "reactstrap";
-import { Formik, Field, Form } from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import defaultAvatar from "../../app/assets/img/unicorn.png";
+import { validateUserLoginForm } from "../../utils/validateUserLoginForm";
 
 const UserLoginForm = () => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
-
   const currentUser = useSelector(selectCurrentUser);
-
   const dispatch = useDispatch();
 
   const handleLogin = (values) => {
@@ -37,7 +36,7 @@ const UserLoginForm = () => {
           <div style={{ width: "4rem", height: "4rem" }}>
             <img
               src={currentUser.avatar}
-              alt="user"
+              alt={"user"}
               style={{ width: "100%", height: "100%" }}
             />
           </div>
@@ -60,6 +59,7 @@ const UserLoginForm = () => {
               password: "",
             }}
             onSubmit={handleLogin}
+            validate={validateUserLoginForm}
           >
             <Form>
               <FormGroup>
@@ -70,6 +70,9 @@ const UserLoginForm = () => {
                   placeholder="Username"
                   className="form-control"
                 />
+                <ErrorMessage name="username">
+                  {(msg) => <p className="text-danger">{msg}</p>}
+                </ErrorMessage>
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="password">Password</Label>
@@ -79,6 +82,9 @@ const UserLoginForm = () => {
                   placeholder="Password"
                   className="form-control"
                 />
+                <ErrorMessage name="password">
+                  {(msg) => <p className="text-danger">{msg}</p>}
+                </ErrorMessage>
               </FormGroup>
               <Button type="submit" color="primary">
                 Login
