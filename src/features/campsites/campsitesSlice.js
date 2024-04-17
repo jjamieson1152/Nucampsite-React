@@ -1,6 +1,8 @@
 import { CAMPSITES } from "../../app/shared/CAMPSITES";
 import { createSlice } from "@reduxjs/toolkit";
 
+// starting Async Campsites 
+
 const initialState = {
   campsitesArray: CAMPSITES,
 };
