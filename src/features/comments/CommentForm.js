@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   Button,
   Modal,
@@ -9,8 +10,7 @@ import {
 } from "reactstrap";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { validateCommentForm } from "../../utils/validateCommentForm";
-import { useDispatch } from "react-redux";
-import { addComment } from "./commentsSlice";
+import { postComment } from "./commentsSlice";
 
 const CommentForm = ({ campsiteId }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -26,7 +26,7 @@ const CommentForm = ({ campsiteId }) => {
       date: new Date(Date.now()).toISOString(),
     };
     console.log(comment);
-    dispatch(addComment(comment));
+    dispatch(postComment(comment));
     setModalOpen(false);
   };
 
